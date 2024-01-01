@@ -30,6 +30,9 @@ function insertLast(head, data) {
 
 function printList(head) {
   console.log("Element Dalam List: ");
+  if (head === undefined || head === null) {
+    return;
+  }
   let current = head;
   while (current !== null) {
     console.log(current.value);
@@ -37,10 +40,30 @@ function printList(head) {
   }
 }
 
+function deleteLast(head) {
+  if (head === null || head.next === null) {
+    return;
+  }
+
+  let current = head;
+  let prev: any | null;
+
+  while (current.next !== null) {
+    prev = current;
+    current = current.next;
+  }
+
+  prev.next = null;
+  return head;
+}
+
+function deleteFirst(head) {
+  if (head !== null) {
+    return head.next;
+  }
+  return null;
+}
+
 let head: null | node = null;
-head = insertLast(head, "node 3");
-head = insertFirst(head, "node 2");
-head = insertLast(head, "node 4");
-head = insertLast(head, "node terakhir");
-head = insertFirst(head, "node 1");
+head = deleteFirst(head);
 printList(head);
